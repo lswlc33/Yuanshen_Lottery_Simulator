@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="img">
+    <file>res/bg.png</file>
+    <file>res/jiuchan.png</file>
+    <file>res/xiangyu.png</file>
+    <file>res/yuanshi.png</file>
+  </qresource>
+  <qresource prefix="font">
+    <file>res/zh-cn.ttf</file>
+  </qresource>
+</RCC>
