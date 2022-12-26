@@ -42,14 +42,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             f = open("setting.ini")
             f.close()
-            print("找到配置文件！\n")
+            print("找到配置文件\n")
         except IOError:
             # 创建配置
             config = configparser.ConfigParser()
             # 加载配置
             config["money"] = {
                 "yuanshi": "160",
-                "fenqiu": "999999",
+                "fenqiu": "160",
             }
             config["probability"] = {
                 "prob_5": "0.6",
@@ -135,7 +135,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         list_4_2 = ast.literal_eval(config.get("pool", "list_4_2"))
         list_5_1 = ast.literal_eval(config.get("pool", "list_5_1"))
         list_5_2 = ast.literal_eval(config.get("pool", "list_5_2"))
-        print(prob_5, prob_4, list_3, list_4_1, list_4_2, list_5_1, list_5_2)
         dict1 = dict(config.items("money"))
         # 设置显示金钱
         self.label_11.setText(dict1["yuanshi"])
