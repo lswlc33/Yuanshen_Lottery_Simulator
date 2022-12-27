@@ -5,13 +5,15 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys, configparser, random, time, res_rc, ast
 
-prob_5 = ''
-prob_4 = ''
-list_3 = ''
-list_4_1 = ''
-list_4_2 = ''
-list_5_1 = ''
-list_5_2 = ''
+prob_5 = ""
+prob_4 = ""
+list_3 = ""
+list_4_1 = ""
+list_4_2 = ""
+list_5_1 = ""
+list_5_2 = ""
+luck_4 = 0
+luck_5 = 0
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -51,68 +53,74 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 "yuanshi": "160",
                 "fenqiu": "160",
             }
+            luck_4
+            config["luck"] = {
+                "luck_4": "0",
+                "luck_5": "0",
+            }
             config["probability"] = {
                 "prob_5": "0.6",
                 "prob_4": "5.1",
             }
             config["pool"] = {
-                "list_3": ["黎明神剑",
-                "以理服人",
-                "冷刀",
-                "黑缨枪",
-                "弹弓",
-                "神射手之誓",
-                "鸦羽弓",
-                "讨龙英杰谭",
-                "沐浴龙血的剑",
-                "飞天御剑",
-                "翡玉法球",
-                "魔导绪论",
-                "铁影阔剑",
+                "list_3": [
+                    "黎明神剑",
+                    "以理服人",
+                    "冷刀",
+                    "黑缨枪",
+                    "弹弓",
+                    "神射手之誓",
+                    "鸦羽弓",
+                    "讨龙英杰谭",
+                    "沐浴龙血的剑",
+                    "飞天御剑",
+                    "翡玉法球",
+                    "魔导绪论",
+                    "铁影阔剑",
                 ],
                 "list_4_1": ["珐露珊", "五郎", "烟绯"],
                 "list_4_2": [
-                "坎蒂丝",
-                "柯莱",
-                "云董" "九条",
-                "裟罗" "托马",
-                "辛焱",
-                "迪奥娜",
-                "诺艾尔",
-                "莱依拉",
-                "多莉",
-                "久岐忍",
-                "鹿野院平藏",
-                "早柚",
-                "罗莎莉亚",
-                "砂糖",
-                "重云",
-                "班尼特",
-                "菲谢尔",
-                "行秋",
-                "香菱",
-                "芭芭拉",
-                "祭礼弓",
-                "西风猎弓",
-                "祭礼残章",
-                "西风秘典",
-                "匣里灭辰",
-                "凝光",
-                "北斗",
-                "雷泽",
-                "弓藏",
-                "绝弦",
-                "昭心",
-                "流浪乐章",
-                "西风长枪",
-                "雨裁",
-                "祭礼大剑",
-                "西风大剑",
-                "祭礼剑",
-                "西风剑",
-                "钟剑",
-                "甲里龙吟",
-                "笛剑",
+                    "坎蒂丝",
+                    "柯莱",
+                    "云董" "九条",
+                    "裟罗" "托马",
+                    "辛焱",
+                    "迪奥娜",
+                    "诺艾尔",
+                    "莱依拉",
+                    "多莉",
+                    "久岐忍",
+                    "鹿野院平藏",
+                    "早柚",
+                    "罗莎莉亚",
+                    "砂糖",
+                    "重云",
+                    "班尼特",
+                    "菲谢尔",
+                    "行秋",
+                    "香菱",
+                    "芭芭拉",
+                    "祭礼弓",
+                    "西风猎弓",
+                    "祭礼残章",
+                    "西风秘典",
+                    "匣里灭辰",
+                    "凝光",
+                    "北斗",
+                    "雷泽",
+                    "弓藏",
+                    "绝弦",
+                    "昭心",
+                    "流浪乐章",
+                    "西风长枪",
+                    "雨裁",
+                    "祭礼大剑",
+                    "西风大剑",
+                    "祭礼剑",
+                    "西风剑",
+                    "钟剑",
+                    "甲里龙吟",
+                    "笛剑",
                 ],
                 "list_5_1": ["流浪者"],
                 "list_5_2": ["提纳里", "刻晴", "莫娜", "七七", "迪卢克", "琴"],
@@ -127,7 +135,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 读取配置文件
         config = configparser.ConfigParser()
         config.read("setting.ini", encoding="gbk")
-        global prob_5, prob_4, list_3, list_4_1, list_4_2, list_5_1, list_5_2
+        global prob_5, prob_4, list_3, list_4_1, list_4_2, list_5_1, list_5_2, luck_4, luck_5
         prob_5 = config.getfloat("probability", "prob_5")
         prob_4 = config.getfloat("probability", "prob_4")
         list_3 = ast.literal_eval(config.get("pool", "list_3"))
@@ -135,6 +143,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         list_4_2 = ast.literal_eval(config.get("pool", "list_4_2"))
         list_5_1 = ast.literal_eval(config.get("pool", "list_5_1"))
         list_5_2 = ast.literal_eval(config.get("pool", "list_5_2"))
+        luck_4 = config.get("luck", "luck_4")
+        luck_4 = config.get("luck", "luck_5")
+
         dict1 = dict(config.items("money"))
         # 设置显示金钱
         self.label_11.setText(dict1["yuanshi"])
@@ -201,7 +212,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.fenqiu_jian()
             except PermissionError:
                 pass
-            self.choujiang()
+            try:
+                self.choujiang()
+            except PermissionError:
+                self.choujiang()
             self.plainTextEdit.appendPlainText("-" * 15)
 
     def fenqiu__goumai(self, event):
@@ -247,17 +261,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except PermissionError:
                 pass
             for i in range(10):
-                self.choujiang()
+                try:
+                    self.choujiang()
+                except PermissionError:
+                    self.choujiang()
             self.plainTextEdit.appendPlainText("-" * 15)
 
     def choujiang(self):
         # 抽卡主要函数，概率等
+        global luck_4, luck_5
+        config = configparser.ConfigParser()
+        config.read("setting.ini", encoding="gbk")
         result_1 = random.randint(1, 1000)
-        if 0 <= result_1 <= 1000 - prob_4 * 10 - prob_5 * 10:
-            ch_name = random.choice(list_3)
-            result_2 = "[三星]  " + ch_name
-
-        elif 1000 - prob_4 * 10 - prob_5 * 10 <= result_1 <= 1000 - prob_5 * 10:
+        luck_4 = int(config.get("luck", "luck_4"))
+        luck_5 = int(config.get("luck", "luck_5"))
+        if luck_4 >= 10:
+            luck_4 = 0
+            luck_5 = luck_5 + 1
             if random.randint(0, 1) == 1:
                 ch_name = random.choice(list_4_1)
                 result_2 = "[四星]  " + ch_name
@@ -266,7 +286,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 ch_name = random.choice(list_4_2)
                 result_2 = "[四星]  " + ch_name
 
-        else:
+        elif luck_5 >= 80:
+            luck_5 = 0
+            luck_4 = luck_4 + 1
             if random.randint(0, 1) == 1:
                 ch_name = random.choice(list_5_1)
                 result_2 = "[五星]  " + ch_name
@@ -274,6 +296,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 ch_name = random.choice(list_5_2)
                 result_2 = "[五星]  " + ch_name
+        else:
+            if 0 <= result_1 <= 1000 - prob_4 * 10 - prob_5 * 10:
+                luck_4 = luck_4 + 1
+                luck_5 = luck_5 + 1
+                ch_name = random.choice(list_3)
+                result_2 = "[三星]  " + ch_name
+
+            elif 1000 - prob_4 * 10 - prob_5 * 10 <= result_1 <= 1000 - prob_5 * 10:
+                luck_5 = luck_5 + 1
+                luck_4 = 0
+                if random.randint(0, 1) == 1:
+                    ch_name = random.choice(list_4_1)
+                    result_2 = "[四星]  " + ch_name
+
+                else:
+                    ch_name = random.choice(list_4_2)
+                    result_2 = "[四星]  " + ch_name
+
+            else:
+                luck_5 = 0
+                luck_4 = luck_4 + 1
+                if random.randint(0, 1) == 1:
+                    ch_name = random.choice(list_5_1)
+                    result_2 = "[五星]  " + ch_name
+
+                else:
+                    ch_name = random.choice(list_5_2)
+                    result_2 = "[五星]  " + ch_name
+        config.set("luck", "luck_4", str(luck_4))
+        config.set("luck", "luck_5", str(luck_5))
+        config.write(open("setting.ini", "w"))
         self.plainTextEdit.appendPlainText(result_2)
         self.plainTextEdit.moveCursor(QTextCursor.End)
 
