@@ -5,13 +5,16 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys, configparser, random, time, res_rc, ast
 
+# 抽卡概率
 prob_5 = ""
 prob_4 = ""
+# 卡池列表
 list_3 = ""
 list_4_1 = ""
 list_4_2 = ""
 list_5_1 = ""
 list_5_2 = ""
+# 保底数
 luck_4 = 0
 luck_5 = 0
 
@@ -136,15 +139,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config = configparser.ConfigParser()
         config.read("setting.ini", encoding="gbk")
         global prob_5, prob_4, list_3, list_4_1, list_4_2, list_5_1, list_5_2, luck_4, luck_5
+
         prob_5 = config.getfloat("probability", "prob_5")
         prob_4 = config.getfloat("probability", "prob_4")
+
         list_3 = ast.literal_eval(config.get("pool", "list_3"))
         list_4_1 = ast.literal_eval(config.get("pool", "list_4_1"))
         list_4_2 = ast.literal_eval(config.get("pool", "list_4_2"))
         list_5_1 = ast.literal_eval(config.get("pool", "list_5_1"))
         list_5_2 = ast.literal_eval(config.get("pool", "list_5_2"))
+
         luck_4 = config.get("luck", "luck_4")
-        luck_4 = config.get("luck", "luck_5")
+        luck_5 = config.get("luck", "luck_5")
 
         dict1 = dict(config.items("money"))
         # 设置显示金钱
@@ -161,6 +167,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config.read("setting.ini", encoding="gbk")
         fenqiu = config.getint("money", "fenqiu")
         yuanshi = config.getint("money", "yuanshi")
+
         self.label_13.setText(str(fenqiu))
         self.label_25.setText(str(fenqiu))
         self.label_11.setText(str(yuanshi))
@@ -173,6 +180,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config.read("setting.ini", encoding="gbk")
         fenqiu = config.getint("money", "fenqiu")
         yuanshi = config.getint("money", "yuanshi")
+
         self.label_13.setText(str(fenqiu))
         self.label_25.setText(str(fenqiu))
         self.label_11.setText(str(yuanshi))
@@ -186,6 +194,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fenqiu = fenqiu - 1
         config.set("money", "fenqiu", str(fenqiu))
         config.write(open("setting.ini", "w"))
+
         self.label_13.setText(str(fenqiu))
         self.label_25.setText(str(fenqiu))
 
@@ -197,6 +206,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fenqiu = fenqiu - 10
         config.set("money", "fenqiu", str(fenqiu))
         config.write(open("setting.ini", "w"))
+
         self.label_13.setText(str(fenqiu))
         self.label_25.setText(str(fenqiu))
 
@@ -205,6 +215,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config = configparser.ConfigParser()
         config.read("setting.ini", encoding="gbk")
         fenqiu = config.getint("money", "fenqiu")
+
         if fenqiu < 1:
             QMessageBox.information(self, "失败", "纠缠之缘不足！")
         else:
@@ -224,14 +235,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config.read("setting.ini", encoding="gbk")
         fenqiu = config.getint("money", "fenqiu")
         yuanshi = config.getint("money", "yuanshi")
+
         if yuanshi < 1600:
             QMessageBox.information(self, "失败", "原石不足！")
         else:
             fenqiu = fenqiu + 10
             yuanshi = yuanshi - 1600
+
         config.set("money", "fenqiu", str(fenqiu))
         config.set("money", "yuanshi", str(yuanshi))
         config.write(open("setting.ini", "w"))
+
         self.label_13.setText(str(fenqiu))
         self.label_25.setText(str(fenqiu))
         self.label_11.setText(str(yuanshi))
@@ -245,6 +259,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         yuanshi = yuanshi + 6480
         config.set("money", "yuanshi", str(yuanshi))
         config.write(open("setting.ini", "w"))
+
         self.label_11.setText(str(yuanshi))
         self.label_23.setText(str(yuanshi))
 
@@ -253,6 +268,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config = configparser.ConfigParser()
         config.read("setting.ini", encoding="gbk")
         fenqiu = config.getint("money", "fenqiu")
+
         if fenqiu < 10:
             QMessageBox.information(self, "失败", "纠缠之缘不足！")
         else:
@@ -273,8 +289,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         config = configparser.ConfigParser()
         config.read("setting.ini", encoding="gbk")
         result_1 = random.randint(1, 1000)
+
         luck_4 = int(config.get("luck", "luck_4"))
         luck_5 = int(config.get("luck", "luck_5"))
+        # 四星保底
         if luck_4 >= 10:
             luck_4 = 0
             luck_5 = luck_5 + 1
@@ -285,7 +303,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 ch_name = random.choice(list_4_2)
                 result_2 = "[四星]  " + ch_name
-
+        # 五星保底
         elif luck_5 >= 80:
             luck_5 = 0
             luck_4 = luck_4 + 1
@@ -296,13 +314,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 ch_name = random.choice(list_5_2)
                 result_2 = "[五星]  " + ch_name
+        # 正常抽卡
         else:
+            # 三星抽卡
             if 0 <= result_1 <= 1000 - prob_4 * 10 - prob_5 * 10:
                 luck_4 = luck_4 + 1
                 luck_5 = luck_5 + 1
                 ch_name = random.choice(list_3)
                 result_2 = "[三星]  " + ch_name
-
+            # 四星抽卡
             elif 1000 - prob_4 * 10 - prob_5 * 10 <= result_1 <= 1000 - prob_5 * 10:
                 luck_5 = luck_5 + 1
                 luck_4 = 0
@@ -313,7 +333,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 else:
                     ch_name = random.choice(list_4_2)
                     result_2 = "[四星]  " + ch_name
-
+            # 五星抽卡
             else:
                 luck_5 = 0
                 luck_4 = luck_4 + 1
@@ -324,9 +344,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 else:
                     ch_name = random.choice(list_5_2)
                     result_2 = "[五星]  " + ch_name
+
         config.set("luck", "luck_4", str(luck_4))
         config.set("luck", "luck_5", str(luck_5))
         config.write(open("setting.ini", "w"))
+
         self.plainTextEdit.appendPlainText(result_2)
         self.plainTextEdit.moveCursor(QTextCursor.End)
 
