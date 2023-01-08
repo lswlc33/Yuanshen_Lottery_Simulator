@@ -1,9 +1,12 @@
-from Ui_untitled import *
+import sys, configparser, random, time
+
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import sys, configparser, random, time, res_rc, ast
+
+from Ui_untitled import *
+import res_rc, ast
 
 # 抽卡概率
 prob_5 = ""
@@ -37,6 +40,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_4.mousePressEvent = self.goto_chouka
         self.frame_17.mousePressEvent = self.fenqiu__goumai
         self.frame.mousePressEvent = self.yuanshi__goumai
+        # 无边框窗口
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground, True)
+
+    # 无边框窗口的移动
+    def mousePressEvent(self, e: QMouseEvent):
+        if e.button() == Qt.LeftButton:
+            self._isTracking = True
+            self._startPos = QPoint(e.x(), e.y())
+
+    def mouseReleaseEvent(self, e: QMouseEvent):
+        if e.button() == Qt.LeftButton:
+            self._isTracking = False
+            self._startPos = None
+            self._endPos = None
+
+    def mouseMoveEvent(self, e: QMouseEvent):
+        try:
+            self._endPos = e.pos() - self._startPos
+            self.move(self.pos() + self._endPos)
+        except:
+            pass
 
     def init(self):
         self.init_ini()
@@ -159,7 +184,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_23.setText(dict1["yuanshi"])
         self.label_25.setText(dict1["fenqiu"])
         # 输出窗口
-        self.plainTextEdit.setPlainText("左下个是抽卡喵\n关注雪中明月喵\n没有钱吃饭了喵\n求三连好不好喵\n" + "-" * 15)
+        self.plainTextEdit.setPlainText(
+            "左下个是抽卡喵~~\n关注雪中明月喵~~\n没有钱吃饭了喵~~\n求三连好不好喵~~\n" + "-" * 24
+        )
 
     def goto_chongzhi(self, event):
         # 进入充值界面
@@ -228,7 +255,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.choujiang()
             except PermissionError:
                 self.choujiang()
-            self.plainTextEdit.appendPlainText("-" * 15)
+            self.plainTextEdit.appendPlainText("-" * 24)
 
     def fenqiu__goumai(self, event):
         # 纠缠之缘的购买

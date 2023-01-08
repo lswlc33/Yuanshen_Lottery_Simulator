@@ -37,23 +37,32 @@ class Ui_MainWindow(object):
         self.centralwidget.setFont(font)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setHorizontalSpacing(0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.frame_21 = QtWidgets.QFrame(self.centralwidget)
+        self.frame_21.setStyleSheet("#frame_21{\n"
+"    background-image: url(:/img/res/bg.png);\n"
+"    border-radius:20px;\n"
+"}")
+        self.frame_21.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_21.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_21.setObjectName("frame_21")
+        self.gridLayout = QtWidgets.QGridLayout(self.frame_21)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
-        self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
+        self.stackedWidget = QtWidgets.QStackedWidget(self.frame_21)
         font = QtGui.QFont()
         font.setFamily("SimSun")
         font.setPointSize(10)
         self.stackedWidget.setFont(font)
-        self.stackedWidget.setStyleSheet("#page_2{\n"
-"background-image: url(:/img/res/bg.png);\n"
+        self.stackedWidget.setStyleSheet("QWidget{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
 "}")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
-        self.page.setStyleSheet("QWidget #page{\n"
-"background-image: url(:/img/res/bg.png);\n"
-"}")
+        self.page.setStyleSheet("")
         self.page.setObjectName("page")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.page)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -94,7 +103,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
-        self.comboBox.setMinimumSize(QtCore.QSize(220, 0))
+        self.comboBox.setMinimumSize(QtCore.QSize(220, 30))
         self.comboBox.setMaximumSize(QtCore.QSize(220, 16777215))
         font = QtGui.QFont()
         font.setFamily("SDK_SC_Web")
@@ -277,13 +286,21 @@ class Ui_MainWindow(object):
         font.setFamily("SDK_SC_Web")
         font.setPointSize(15)
         self.pushButton_3.setFont(font)
-        self.pushButton_3.setStyleSheet("background-color: rgba(255, 255, 255, 90%);\n"
-"color: rgb(186, 167, 149);\n"
-"border: 1px solid rgba(186, 167, 149, 90%);\n"
-"border-radius:10px;")
+        self.pushButton_3.setStyleSheet("QPushButton{ \n"
+"    background-color: rgba(255, 255, 255, 90%);\n"
+"    color: rgb(186, 167, 149);    \n"
+"    border: 2px solid rgba(186, 167, 149, 90%);\n"
+"    border-radius:10px;\n"
+"}\n"
+"QPushButton:hover{ \n"
+"    background-color: rgb(239, 239, 239);\n"
+"}\n"
+"QPushButton::pressed{ \n"
+"    background-color: rgb(222, 222, 222);\n"
+"}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.label = QtWidgets.QLabel(self.frame_40)
-        self.label.setGeometry(QtCore.QRect(182, 111, 163, 28))
+        self.label.setGeometry(QtCore.QRect(180, 110, 163, 28))
         font = QtGui.QFont()
         font.setFamily("SDK_SC_Web")
         font.setPointSize(14)
@@ -305,6 +322,18 @@ class Ui_MainWindow(object):
         font.setFamily("SimSun")
         font.setPointSize(1)
         self.frame_31.setFont(font)
+        self.frame_31.setStyleSheet("QPushButton{ \n"
+"    background-color: rgba(255, 255, 255, 90%);\n"
+"    color: rgb(186, 167, 149);    \n"
+"    border: 2px solid rgba(186, 167, 149, 90%);\n"
+"    border-radius:20px;\n"
+"}\n"
+"QPushButton:hover{ \n"
+"    background-color: rgb(239, 239, 239);\n"
+"}\n"
+"QPushButton::pressed{ \n"
+"    background-color: rgb(222, 222, 222);\n"
+"}")
         self.frame_31.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_31.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_31.setObjectName("frame_31")
@@ -323,10 +352,7 @@ class Ui_MainWindow(object):
         font.setFamily("SDK_SC_Web")
         font.setPointSize(15)
         self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("background-color: rgba(255, 255, 255, 90%);\n"
-"color: rgb(186, 167, 149);\n"
-"border: 2px solid rgba(186, 167, 149, 90%);\n"
-"border-radius:20px;")
+        self.pushButton.setStyleSheet("")
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_9.addWidget(self.pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.frame_31)
@@ -340,19 +366,19 @@ class Ui_MainWindow(object):
         font.setFamily("SDK_SC_Web")
         font.setPointSize(15)
         self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("background-color: rgba(255, 255, 255, 90%);\n"
-"color: rgb(186, 167, 149);\n"
-"border: 2px solid rgba(186, 167, 149, 90%);\n"
-"border-radius:20px;")
+        self.pushButton_2.setStyleSheet("")
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_9.addWidget(self.pushButton_2)
         self.verticalLayout_2.addWidget(self.frame_31)
         self.horizontalLayout_5.addWidget(self.frame_26)
         self.frame_27 = QtWidgets.QFrame(self.page)
+        self.frame_27.setMinimumSize(QtCore.QSize(378, 0))
+        self.frame_27.setMaximumSize(QtCore.QSize(378, 16777215))
         self.frame_27.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_27.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_27.setObjectName("frame_27")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_27)
+        self.verticalLayout_3.setSpacing(20)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.frame_28 = QtWidgets.QFrame(self.frame_27)
         font = QtGui.QFont()
@@ -363,7 +389,7 @@ class Ui_MainWindow(object):
         self.frame_28.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_28.setObjectName("frame_28")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.frame_28)
-        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 10)
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_8.setSpacing(10)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.frame_32 = QtWidgets.QFrame(self.frame_28)
@@ -446,6 +472,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.frame_33)
         self.verticalLayout_3.addWidget(self.frame_28)
         self.frame_29 = QtWidgets.QFrame(self.frame_27)
+        self.frame_29.setMinimumSize(QtCore.QSize(350, 0))
+        self.frame_29.setMaximumSize(QtCore.QSize(350, 16777215))
         font = QtGui.QFont()
         font.setFamily("SimSun")
         font.setPointSize(1)
@@ -515,12 +543,43 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.gridLayout_3.addWidget(self.plainTextEdit, 0, 0, 1, 1)
         self.verticalLayout_3.addWidget(self.frame_29)
+        self.frame_22 = QtWidgets.QFrame(self.frame_27)
+        self.frame_22.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_22.setObjectName("frame_22")
+        self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.frame_22)
+        self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_17.setSpacing(0)
+        self.horizontalLayout_17.setObjectName("horizontalLayout_17")
+        self.pushButton_5 = QtWidgets.QPushButton(self.frame_22)
+        self.pushButton_5.setMinimumSize(QtCore.QSize(0, 43))
+        font = QtGui.QFont()
+        font.setFamily("SDK_SC_Web")
+        font.setPointSize(15)
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setStyleSheet("QPushButton{ \n"
+"    background-color: rgba(255, 255, 255, 90%);\n"
+"    color: rgb(186, 167, 149);    \n"
+"    border: 2px solid rgba(186, 167, 149, 90%);\n"
+"    border-radius:10px;\n"
+"}\n"
+"QPushButton:hover{ \n"
+"    background-color: rgb(239, 239, 239);\n"
+"}\n"
+"QPushButton::pressed{ \n"
+"    background-color: rgb(222, 222, 222);\n"
+"}")
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayout_17.addWidget(self.pushButton_5)
+        self.verticalLayout_3.addWidget(self.frame_22)
         self.verticalLayout_3.setStretch(1, 1)
         self.horizontalLayout_5.addWidget(self.frame_27)
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.page_2)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.frame_5 = QtWidgets.QFrame(self.page_2)
         self.frame_5.setStyleSheet("border-radius: 20px;\n"
@@ -904,10 +963,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.frame_5)
         self.stackedWidget.addWidget(self.page_2)
         self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.frame_21, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
+        self.pushButton_5.clicked.connect(MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -927,24 +988,12 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "祈愿10次"))
         self.label_11.setText(_translate("MainWindow", "9999999"))
         self.label_13.setText(_translate("MainWindow", "9999999"))
-        self.plainTextEdit.setPlainText(_translate("MainWindow", "[四星]雷泽\n"
-"------------------------\n"
-"[三星]冷刀\n"
-"------------------------\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-"[三星]冷刀\n"
-""))
+        self.plainTextEdit.setPlainText(_translate("MainWindow", "左下个是抽卡喵\n"
+"关注雪中明月喵\n"
+"没有钱吃饭了喵\n"
+"求三连好不好喵\n"
+"---------------"))
+        self.pushButton_5.setText(_translate("MainWindow", "爷不抽了！(退出）"))
         self.label_5.setText(_translate("MainWindow", "商城"))
         self.label_6.setText(_translate("MainWindow", "请适度娱乐，理性消费"))
         self.label_7.setText(_translate("MainWindow", " 原石和粉球"))
