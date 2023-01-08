@@ -158,7 +158,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_13.setText(dict1["fenqiu"])
         self.label_23.setText(dict1["yuanshi"])
         self.label_25.setText(dict1["fenqiu"])
-        self.plainTextEdit.setPlainText("...")
+        # 输出窗口
+        self.plainTextEdit.setPlainText("左下个是抽卡喵\n关注雪中明月喵\n没有钱吃饭了喵\n求三连好不好喵\n" + "-" * 15)
 
     def goto_chongzhi(self, event):
         # 进入充值界面

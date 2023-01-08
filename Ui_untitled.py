@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\OneDrive\python\gn\untitled.ui'
+# Form implementation generated from reading ui file 'd:\OneDrive\python\Yuanshen_Lottery_Simulator\untitled.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -25,6 +25,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("SDK_SC_Web")
         MainWindow.setFont(font)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/img/res/jiuchan.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("")
         MainWindow.setIconSize(QtCore.QSize(0, 0))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
